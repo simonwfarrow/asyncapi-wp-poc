@@ -28,23 +28,7 @@ public class SummaryChargeFundingCurrencyLevelType {
         this.fundingCurrencyCode = fundingCurrencyCode;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        SummaryChargeFundingCurrencyLevelType summaryChargeFundingCurrencyLevelType = (SummaryChargeFundingCurrencyLevelType) o;
-        return 
-            Objects.equals(this.fundingCurrencyCode, summaryChargeFundingCurrencyLevelType.fundingCurrencyCode);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fundingCurrencyCode);
-    }
+    
 
     @Override
     public String toString() {

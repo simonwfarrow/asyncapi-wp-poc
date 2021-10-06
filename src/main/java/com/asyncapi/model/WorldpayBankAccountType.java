@@ -106,29 +106,7 @@ public class WorldpayBankAccountType {
         this.paymentInfoMsg = paymentInfoMsg;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        WorldpayBankAccountType worldpayBankAccountType = (WorldpayBankAccountType) o;
-        return 
-            Objects.equals(this.accountName, worldpayBankAccountType.accountName) &&
-            Objects.equals(this.number, worldpayBankAccountType.number) &&
-            Objects.equals(this.sortCode, worldpayBankAccountType.sortCode) &&
-            Objects.equals(this.iban, worldpayBankAccountType.iban) &&
-            Objects.equals(this.debitDate, worldpayBankAccountType.debitDate) &&
-            Objects.equals(this.swift, worldpayBankAccountType.swift) &&
-            Objects.equals(this.paymentInfoMsg, worldpayBankAccountType.paymentInfoMsg);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(accountName, number, sortCode, iban, debitDate, swift, paymentInfoMsg);
-    }
+    
 
     @Override
     public String toString() {

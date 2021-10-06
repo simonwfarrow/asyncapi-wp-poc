@@ -17,22 +17,7 @@ public class PmsBillRequest {
         this.payload = payload;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PmsBillRequest event = (PmsBillRequest) o;
-        return Objects.equals(this.payload, event.payload);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(payload);
-    }
+    
 
     @Override
     public String toString() {

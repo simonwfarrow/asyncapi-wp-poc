@@ -93,28 +93,7 @@ public class MerchantBankAccountType {
         this.paymentInfoMsg = paymentInfoMsg;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MerchantBankAccountType merchantBankAccountType = (MerchantBankAccountType) o;
-        return 
-            Objects.equals(this.accountName, merchantBankAccountType.accountName) &&
-            Objects.equals(this.number, merchantBankAccountType.number) &&
-            Objects.equals(this.sortCode, merchantBankAccountType.sortCode) &&
-            Objects.equals(this.iban, merchantBankAccountType.iban) &&
-            Objects.equals(this.debitDate, merchantBankAccountType.debitDate) &&
-            Objects.equals(this.paymentInfoMsg, merchantBankAccountType.paymentInfoMsg);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(accountName, number, sortCode, iban, debitDate, paymentInfoMsg);
-    }
+    
 
     @Override
     public String toString() {

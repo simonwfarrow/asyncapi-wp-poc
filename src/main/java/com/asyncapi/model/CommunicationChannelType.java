@@ -67,26 +67,7 @@ public class CommunicationChannelType {
         this.portal = portal;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CommunicationChannelType communicationChannelType = (CommunicationChannelType) o;
-        return 
-            Objects.equals(this.store, communicationChannelType.store) &&
-            Objects.equals(this.post, communicationChannelType.post) &&
-            Objects.equals(this.email, communicationChannelType.email) &&
-            Objects.equals(this.portal, communicationChannelType.portal);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(store, post, email, portal);
-    }
+    
 
     @Override
     public String toString() {

@@ -21,7 +21,7 @@ public class InvoiceType {
     
     private @Valid InvoiceSummaryType chargeSummary;
     
-    private @Valid AnonymousSchema60 details;
+    private @Valid InvoiceDetailsType details;
     
     private @Valid String filename;
     
@@ -74,11 +74,11 @@ public class InvoiceType {
 
     
     @JsonProperty("details")
-    public AnonymousSchema60 getDetails() {
+    public InvoiceDetailsType getDetails() {
         return details;
     }
 
-    public void setDetails(AnonymousSchema60 details) {
+    public void setDetails(InvoiceDetailsType details) {
         this.details = details;
     }
     
@@ -93,28 +93,7 @@ public class InvoiceType {
         this.filename = filename;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        InvoiceType invoiceType = (InvoiceType) o;
-        return 
-            Objects.equals(this.chargingCurrency, invoiceType.chargingCurrency) &&
-            Objects.equals(this.taxAuthorityCode, invoiceType.taxAuthorityCode) &&
-            Objects.equals(this.header, invoiceType.header) &&
-            Objects.equals(this.chargeSummary, invoiceType.chargeSummary) &&
-            Objects.equals(this.details, invoiceType.details) &&
-            Objects.equals(this.filename, invoiceType.filename);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(chargingCurrency, taxAuthorityCode, header, chargeSummary, details, filename);
-    }
+    
 
     @Override
     public String toString() {

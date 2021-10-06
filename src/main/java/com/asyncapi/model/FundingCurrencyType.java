@@ -67,26 +67,7 @@ public class FundingCurrencyType {
         this.chargesPayable = chargesPayable;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        FundingCurrencyType fundingCurrencyType = (FundingCurrencyType) o;
-        return 
-            Objects.equals(this.fundingCurrencyCode, fundingCurrencyType.fundingCurrencyCode) &&
-            Objects.equals(this.charges, fundingCurrencyType.charges) &&
-            Objects.equals(this.totals, fundingCurrencyType.totals) &&
-            Objects.equals(this.chargesPayable, fundingCurrencyType.chargesPayable);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fundingCurrencyCode, charges, totals, chargesPayable);
-    }
+    
 
     @Override
     public String toString() {

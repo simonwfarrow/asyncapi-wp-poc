@@ -93,28 +93,7 @@ public class DetailedChargeTopCategoryType {
         this.otherFees = otherFees;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DetailedChargeTopCategoryType detailedChargeTopCategoryType = (DetailedChargeTopCategoryType) o;
-        return 
-            Objects.equals(this.worldpayAcquiredCards, detailedChargeTopCategoryType.worldpayAcquiredCards) &&
-            Objects.equals(this.otherAcquirerCards, detailedChargeTopCategoryType.otherAcquirerCards) &&
-            Objects.equals(this.chargebacks, detailedChargeTopCategoryType.chargebacks) &&
-            Objects.equals(this.premium, detailedChargeTopCategoryType.premium) &&
-            Objects.equals(this.miscellaneous, detailedChargeTopCategoryType.miscellaneous) &&
-            Objects.equals(this.otherFees, detailedChargeTopCategoryType.otherFees);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(worldpayAcquiredCards, otherAcquirerCards, chargebacks, premium, miscellaneous, otherFees);
-    }
+    
 
     @Override
     public String toString() {

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema187 {
+public class AnonymousSchema184 {
     
     private @Valid Object emailContact;
     
@@ -28,27 +28,11 @@ public class AnonymousSchema187 {
         this.emailContact = emailContact;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AnonymousSchema187 anonymousSchema187 = (AnonymousSchema187) o;
-        return 
-            Objects.equals(this.emailContact, anonymousSchema187.emailContact);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(emailContact);
-    }
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema187 {\n" +
+        return "class AnonymousSchema184 {\n" +
         
                 "    emailContact: " + toIndentedString(emailContact) + "\n" +
                 "}";

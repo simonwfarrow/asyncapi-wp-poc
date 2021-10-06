@@ -27,7 +27,7 @@ public class MerchantDetailsType {
     
     private @Valid String merType;
     
-    private @Valid AnonymousSchema182 contact;
+    private @Valid AnonymousSchema179 contact;
     
     private @Valid MerchantBankAccountType bankAccount;
     
@@ -115,11 +115,11 @@ public class MerchantDetailsType {
 
     
     @JsonProperty("contact")
-    public AnonymousSchema182 getContact() {
+    public AnonymousSchema179 getContact() {
         return contact;
     }
 
-    public void setContact(AnonymousSchema182 contact) {
+    public void setContact(AnonymousSchema179 contact) {
         this.contact = contact;
     }
     
@@ -145,32 +145,7 @@ public class MerchantDetailsType {
         this.worldpayBankAccount = worldpayBankAccount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MerchantDetailsType merchantDetailsType = (MerchantDetailsType) o;
-        return 
-            Objects.equals(this.taxdsRegNumber, merchantDetailsType.taxdsRegNumber) &&
-            Objects.equals(this.storeReference, merchantDetailsType.storeReference) &&
-            Objects.equals(this.id, merchantDetailsType.id) &&
-            Objects.equals(this.name, merchantDetailsType.name) &&
-            Objects.equals(this.storeTown, merchantDetailsType.storeTown) &&
-            Objects.equals(this.tradingName, merchantDetailsType.tradingName) &&
-            Objects.equals(this.merType, merchantDetailsType.merType) &&
-            Objects.equals(this.contact, merchantDetailsType.contact) &&
-            Objects.equals(this.bankAccount, merchantDetailsType.bankAccount) &&
-            Objects.equals(this.worldpayBankAccount, merchantDetailsType.worldpayBankAccount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(taxdsRegNumber, storeReference, id, name, storeTown, tradingName, merType, contact, bankAccount, worldpayBankAccount);
-    }
+    
 
     @Override
     public String toString() {

@@ -119,30 +119,7 @@ public class DetailedChargeType {
         this.sourceMerchantId = sourceMerchantId;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DetailedChargeType detailedChargeType = (DetailedChargeType) o;
-        return 
-            Objects.equals(this.headerName, detailedChargeType.headerName) &&
-            Objects.equals(this.txnCount, detailedChargeType.txnCount) &&
-            Objects.equals(this.chargePerTxn, detailedChargeType.chargePerTxn) &&
-            Objects.equals(this.txnValue, detailedChargeType.txnValue) &&
-            Objects.equals(this.chargeRate, detailedChargeType.chargeRate) &&
-            Objects.equals(this.chargeAmount, detailedChargeType.chargeAmount) &&
-            Objects.equals(this.taxCode, detailedChargeType.taxCode) &&
-            Objects.equals(this.sourceMerchantId, detailedChargeType.sourceMerchantId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(headerName, txnCount, chargePerTxn, txnValue, chargeRate, chargeAmount, taxCode, sourceMerchantId);
-    }
+    
 
     @Override
     public String toString() {

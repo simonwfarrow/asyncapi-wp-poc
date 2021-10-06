@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema199 {
+public class AnonymousSchema196 {
     
     private @Valid AddressType address;
     
-    private @Valid AnonymousSchema200 phone;
+    private @Valid AnonymousSchema197 phone;
     
 
     
@@ -33,36 +33,19 @@ public class AnonymousSchema199 {
 
     
     @JsonProperty("phone")
-    public AnonymousSchema200 getPhone() {
+    public AnonymousSchema197 getPhone() {
         return phone;
     }
 
-    public void setPhone(AnonymousSchema200 phone) {
+    public void setPhone(AnonymousSchema197 phone) {
         this.phone = phone;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AnonymousSchema199 anonymousSchema199 = (AnonymousSchema199) o;
-        return 
-            Objects.equals(this.address, anonymousSchema199.address) &&
-            Objects.equals(this.phone, anonymousSchema199.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(address, phone);
-    }
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema199 {\n" +
+        return "class AnonymousSchema196 {\n" +
         
                 "    address: " + toIndentedString(address) + "\n" +
                 "    phone: " + toIndentedString(phone) + "\n" +

@@ -11,30 +11,16 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema174 {
+public class AnonymousSchema97 {
     
-    private @Valid BatchTotalType batchTotal;
 
-    @JsonProperty("batchTotal")
-    public BatchTotalType getBatchTotal() {
-        return batchTotal;
-    }
-
-    public void setBatchTotal(BatchTotalType batchTotal) {
-            batchTotal = batchTotal;
-    }
-
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(batchTotal);
-    }
+    
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema174 {\n" +
+        return "class AnonymousSchema97 {\n" +
         
-                "    batchTotal: " + toIndentedString(batchTotal) + "\n" +
                 "}";
     }
 

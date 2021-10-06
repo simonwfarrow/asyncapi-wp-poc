@@ -67,26 +67,7 @@ public class OverpaymentsType {
         this.remainingOverpayment = remainingOverpayment;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        OverpaymentsType overpaymentsType = (OverpaymentsType) o;
-        return 
-            Objects.equals(this.currentInvoiceAmount, overpaymentsType.currentInvoiceAmount) &&
-            Objects.equals(this.overpaymentsAmount, overpaymentsType.overpaymentsAmount) &&
-            Objects.equals(this.totalDue, overpaymentsType.totalDue) &&
-            Objects.equals(this.remainingOverpayment, overpaymentsType.remainingOverpayment);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(currentInvoiceAmount, overpaymentsAmount, totalDue, remainingOverpayment);
-    }
+    
 
     @Override
     public String toString() {

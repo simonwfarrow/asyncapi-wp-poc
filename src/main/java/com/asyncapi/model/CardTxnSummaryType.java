@@ -28,23 +28,7 @@ public class CardTxnSummaryType {
         this.cardList = cardList;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CardTxnSummaryType cardTxnSummaryType = (CardTxnSummaryType) o;
-        return 
-            Objects.equals(this.cardList, cardTxnSummaryType.cardList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cardList);
-    }
+    
 
     @Override
     public String toString() {

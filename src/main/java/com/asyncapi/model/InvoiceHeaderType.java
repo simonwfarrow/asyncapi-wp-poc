@@ -392,51 +392,7 @@ public class InvoiceHeaderType {
         this.paymentInvoiceAmount = paymentInvoiceAmount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        InvoiceHeaderType invoiceHeaderType = (InvoiceHeaderType) o;
-        return 
-            Objects.equals(this.invoiceNumber, invoiceHeaderType.invoiceNumber) &&
-            Objects.equals(this.regenFlag, invoiceHeaderType.regenFlag) &&
-            Objects.equals(this.contactReasonTypeId, invoiceHeaderType.contactReasonTypeId) &&
-            Objects.equals(this.documentTemplateTypeId, invoiceHeaderType.documentTemplateTypeId) &&
-            Objects.equals(this.businessUnit, invoiceHeaderType.businessUnit) &&
-            Objects.equals(this.externalPartyId, invoiceHeaderType.externalPartyId) &&
-            Objects.equals(this.internalPartyId, invoiceHeaderType.internalPartyId) &&
-            Objects.equals(this.poNumber, invoiceHeaderType.poNumber) &&
-            Objects.equals(this.previousBalance, invoiceHeaderType.previousBalance) &&
-            Objects.equals(this.batchId, invoiceHeaderType.batchId) &&
-            Objects.equals(this.batchTotalCount, invoiceHeaderType.batchTotalCount) &&
-            Objects.equals(this.invoicePackStart, invoiceHeaderType.invoicePackStart) &&
-            Objects.equals(this.invoicePackEnd, invoiceHeaderType.invoicePackEnd) &&
-            Objects.equals(this.totalInvoices, invoiceHeaderType.totalInvoices) &&
-            Objects.equals(this.invoiceCounter, invoiceHeaderType.invoiceCounter) &&
-            Objects.equals(this.invoiceDate, invoiceHeaderType.invoiceDate) &&
-            Objects.equals(this.billCyclePeriod, invoiceHeaderType.billCyclePeriod) &&
-            Objects.equals(this.invoiceTitleMsg, invoiceHeaderType.invoiceTitleMsg) &&
-            Objects.equals(this.taxDisclaimerMsg, invoiceHeaderType.taxDisclaimerMsg) &&
-            Objects.equals(this.marketingMsg, invoiceHeaderType.marketingMsg) &&
-            Objects.equals(this.brochure, invoiceHeaderType.brochure) &&
-            Objects.equals(this.premiumMsg, invoiceHeaderType.premiumMsg) &&
-            Objects.equals(this.taxZeroReversedMsg, invoiceHeaderType.taxZeroReversedMsg) &&
-            Objects.equals(this.bankAccount, invoiceHeaderType.bankAccount) &&
-            Objects.equals(this.worldpayBankAccount, invoiceHeaderType.worldpayBankAccount) &&
-            Objects.equals(this.taxRegNumber, invoiceHeaderType.taxRegNumber) &&
-            Objects.equals(this.paymentInfoMsg, invoiceHeaderType.paymentInfoMsg) &&
-            Objects.equals(this.paymentInvoiceNumber, invoiceHeaderType.paymentInvoiceNumber) &&
-            Objects.equals(this.paymentInvoiceAmount, invoiceHeaderType.paymentInvoiceAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(invoiceNumber, regenFlag, contactReasonTypeId, documentTemplateTypeId, businessUnit, externalPartyId, internalPartyId, poNumber, previousBalance, batchId, batchTotalCount, invoicePackStart, invoicePackEnd, totalInvoices, invoiceCounter, invoiceDate, billCyclePeriod, invoiceTitleMsg, taxDisclaimerMsg, marketingMsg, brochure, premiumMsg, taxZeroReversedMsg, bankAccount, worldpayBankAccount, taxRegNumber, paymentInfoMsg, paymentInvoiceNumber, paymentInvoiceAmount);
-    }
+    
 
     @Override
     public String toString() {

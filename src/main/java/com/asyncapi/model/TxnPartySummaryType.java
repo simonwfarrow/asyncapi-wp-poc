@@ -119,30 +119,7 @@ public class TxnPartySummaryType {
         this.billAmount = billAmount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TxnPartySummaryType txnPartySummaryType = (TxnPartySummaryType) o;
-        return 
-            Objects.equals(this.headerName, txnPartySummaryType.headerName) &&
-            Objects.equals(this.txnValue, txnPartySummaryType.txnValue) &&
-            Objects.equals(this.txnCount, txnPartySummaryType.txnCount) &&
-            Objects.equals(this.icFee, txnPartySummaryType.icFee) &&
-            Objects.equals(this.schemeFee, txnPartySummaryType.schemeFee) &&
-            Objects.equals(this.chargeAmount, txnPartySummaryType.chargeAmount) &&
-            Objects.equals(this.taxAmount, txnPartySummaryType.taxAmount) &&
-            Objects.equals(this.billAmount, txnPartySummaryType.billAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(headerName, txnValue, txnCount, icFee, schemeFee, chargeAmount, taxAmount, billAmount);
-    }
+    
 
     @Override
     public String toString() {

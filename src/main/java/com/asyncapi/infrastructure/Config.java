@@ -71,6 +71,16 @@ public class Config {
         
         "taxAnalysisType:com.asyncapi.model.TaxAnalysisType," +
         
+        "invoiceDetailsType:com.asyncapi.model.InvoiceDetailsType," +
+        
+        "invoiceDetailsBillingPartyType:com.asyncapi.model.InvoiceDetailsBillingPartyType," +
+        
+        "detailedChargeTopCategoryType:com.asyncapi.model.DetailedChargeTopCategoryType," +
+        
+        "overpaymentsType:com.asyncapi.model.OverpaymentsType," +
+        
+        "creditNoteNettingType:com.asyncapi.model.CreditNoteNettingType," +
+        
         "creditNoteType:com.asyncapi.model.CreditNoteType," +
         
         "creditNoteHeaderType:com.asyncapi.model.CreditNoteHeaderType," +
@@ -110,14 +120,6 @@ public class Config {
         "fundingCurrencyType:com.asyncapi.model.FundingCurrencyType," +
         
         "txnPartySummaryType:com.asyncapi.model.TxnPartySummaryType," +
-        
-        "detailedChargeTopCategoryType:com.asyncapi.model.DetailedChargeTopCategoryType," +
-        
-        "invoiceDetailsType:com.asyncapi.model.InvoiceDetailsType," +
-        
-        "overpaymentsType:com.asyncapi.model.OverpaymentsType," +
-        
-        "creditNoteNettingType:com.asyncapi.model.CreditNoteNettingType," +
         
         "creditNoteDetailsType:com.asyncapi.model.CreditNoteDetailsType," +
         
@@ -184,6 +186,16 @@ public class Config {
         
         "taxAnalysisType:com.asyncapi.model.TaxAnalysisType," +
         
+        "invoiceDetailsType:com.asyncapi.model.InvoiceDetailsType," +
+        
+        "invoiceDetailsBillingPartyType:com.asyncapi.model.InvoiceDetailsBillingPartyType," +
+        
+        "detailedChargeTopCategoryType:com.asyncapi.model.DetailedChargeTopCategoryType," +
+        
+        "overpaymentsType:com.asyncapi.model.OverpaymentsType," +
+        
+        "creditNoteNettingType:com.asyncapi.model.CreditNoteNettingType," +
+        
         "creditNoteType:com.asyncapi.model.CreditNoteType," +
         
         "creditNoteHeaderType:com.asyncapi.model.CreditNoteHeaderType," +
@@ -223,14 +235,6 @@ public class Config {
         "fundingCurrencyType:com.asyncapi.model.FundingCurrencyType," +
         
         "txnPartySummaryType:com.asyncapi.model.TxnPartySummaryType," +
-        
-        "detailedChargeTopCategoryType:com.asyncapi.model.DetailedChargeTopCategoryType," +
-        
-        "invoiceDetailsType:com.asyncapi.model.InvoiceDetailsType," +
-        
-        "overpaymentsType:com.asyncapi.model.OverpaymentsType," +
-        
-        "creditNoteNettingType:com.asyncapi.model.CreditNoteNettingType," +
         
         "creditNoteDetailsType:com.asyncapi.model.CreditNoteDetailsType," +
         

@@ -132,31 +132,7 @@ public class SummaryLevelChargesSubType {
         this.billTotalChargesDue = billTotalChargesDue;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        SummaryLevelChargesSubType summaryLevelChargesSubType = (SummaryLevelChargesSubType) o;
-        return 
-            Objects.equals(this.worldpayAcquiredCards, summaryLevelChargesSubType.worldpayAcquiredCards) &&
-            Objects.equals(this.otherAcquirerCards, summaryLevelChargesSubType.otherAcquirerCards) &&
-            Objects.equals(this.chargebacks, summaryLevelChargesSubType.chargebacks) &&
-            Objects.equals(this.premium, summaryLevelChargesSubType.premium) &&
-            Objects.equals(this.miscellaneous, summaryLevelChargesSubType.miscellaneous) &&
-            Objects.equals(this.otherFees, summaryLevelChargesSubType.otherFees) &&
-            Objects.equals(this.totalNetCharges, summaryLevelChargesSubType.totalNetCharges) &&
-            Objects.equals(this.totalTaxAmount, summaryLevelChargesSubType.totalTaxAmount) &&
-            Objects.equals(this.billTotalChargesDue, summaryLevelChargesSubType.billTotalChargesDue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(worldpayAcquiredCards, otherAcquirerCards, chargebacks, premium, miscellaneous, otherFees, totalNetCharges, totalTaxAmount, billTotalChargesDue);
-    }
+    
 
     @Override
     public String toString() {

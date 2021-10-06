@@ -93,28 +93,7 @@ public class PackageInfoType {
         this.description = description;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PackageInfoType packageInfoType = (PackageInfoType) o;
-        return 
-            Objects.equals(this.key1, packageInfoType.key1) &&
-            Objects.equals(this.key2, packageInfoType.key2) &&
-            Objects.equals(this.tranCode, packageInfoType.tranCode) &&
-            Objects.equals(this.keyId, packageInfoType.keyId) &&
-            Objects.equals(this.creationTime, packageInfoType.creationTime) &&
-            Objects.equals(this.description, packageInfoType.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(key1, key2, tranCode, keyId, creationTime, description);
-    }
+    
 
     @Override
     public String toString() {

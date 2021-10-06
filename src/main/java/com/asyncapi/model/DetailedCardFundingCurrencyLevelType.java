@@ -132,31 +132,7 @@ public class DetailedCardFundingCurrencyLevelType {
         this.allCardsSummary = allCardsSummary;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DetailedCardFundingCurrencyLevelType detailedCardFundingCurrencyLevelType = (DetailedCardFundingCurrencyLevelType) o;
-        return 
-            Objects.equals(this.fundingCurrencyCode, detailedCardFundingCurrencyLevelType.fundingCurrencyCode) &&
-            Objects.equals(this.headerName, detailedCardFundingCurrencyLevelType.headerName) &&
-            Objects.equals(this.pricingCurrencyCode, detailedCardFundingCurrencyLevelType.pricingCurrencyCode) &&
-            Objects.equals(this.priceToChargeExchangeRate, detailedCardFundingCurrencyLevelType.priceToChargeExchangeRate) &&
-            Objects.equals(this.priceToChargeExchangeMessage, detailedCardFundingCurrencyLevelType.priceToChargeExchangeMessage) &&
-            Objects.equals(this.fundToChargeExchangeRate, detailedCardFundingCurrencyLevelType.fundToChargeExchangeRate) &&
-            Objects.equals(this.fundToChargeExchangeMessage, detailedCardFundingCurrencyLevelType.fundToChargeExchangeMessage) &&
-            Objects.equals(this.cardList, detailedCardFundingCurrencyLevelType.cardList) &&
-            Objects.equals(this.allCardsSummary, detailedCardFundingCurrencyLevelType.allCardsSummary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fundingCurrencyCode, headerName, pricingCurrencyCode, priceToChargeExchangeRate, priceToChargeExchangeMessage, fundToChargeExchangeRate, fundToChargeExchangeMessage, cardList, allCardsSummary);
-    }
+    
 
     @Override
     public String toString() {

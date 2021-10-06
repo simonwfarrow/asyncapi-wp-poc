@@ -21,7 +21,7 @@ public class CreditNoteType {
     
     private @Valid InvoiceSummaryType chargeSummary;
     
-    private @Valid AnonymousSchema90 details;
+    private @Valid AnonymousSchema97 details;
     
 
     
@@ -72,35 +72,15 @@ public class CreditNoteType {
 
     
     @JsonProperty("details")
-    public AnonymousSchema90 getDetails() {
+    public AnonymousSchema97 getDetails() {
         return details;
     }
 
-    public void setDetails(AnonymousSchema90 details) {
+    public void setDetails(AnonymousSchema97 details) {
         this.details = details;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CreditNoteType creditNoteType = (CreditNoteType) o;
-        return 
-            Objects.equals(this.chargingCurrency, creditNoteType.chargingCurrency) &&
-            Objects.equals(this.taxAuthorityCode, creditNoteType.taxAuthorityCode) &&
-            Objects.equals(this.header, creditNoteType.header) &&
-            Objects.equals(this.chargeSummary, creditNoteType.chargeSummary) &&
-            Objects.equals(this.details, creditNoteType.details);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(chargingCurrency, taxAuthorityCode, header, chargeSummary, details);
-    }
+    
 
     @Override
     public String toString() {

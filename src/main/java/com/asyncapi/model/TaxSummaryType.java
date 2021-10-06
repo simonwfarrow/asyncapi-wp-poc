@@ -13,23 +13,23 @@ import java.util.Objects;
 
 public class TaxSummaryType {
     
-    private @Valid AnonymousSchema47 taxLines;
+    private @Valid List<TaxAnalysisType> taxLinesList;
     
     private @Valid String totalTaxAmountBillCurrency;
     
-    private @Valid AnonymousSchema56 totalTaxAmountLocalCurrency;
+    private @Valid AnonymousSchema54 totalTaxAmountLocalCurrency;
     
 
     
 
     
     @JsonProperty("taxLines")
-    public AnonymousSchema47 getTaxLines() {
-        return taxLines;
+    public List<TaxAnalysisType> getTaxLines() {
+        return taxLinesList;
     }
 
-    public void setTaxLines(AnonymousSchema47 taxLines) {
-        this.taxLines = taxLines;
+    public void setTaxLines(List<TaxAnalysisType> taxLinesList) {
+        this.taxLinesList = taxLinesList;
     }
     
 
@@ -46,39 +46,21 @@ public class TaxSummaryType {
 
     
     @JsonProperty("totalTaxAmountLocalCurrency")
-    public AnonymousSchema56 getTotalTaxAmountLocalCurrency() {
+    public AnonymousSchema54 getTotalTaxAmountLocalCurrency() {
         return totalTaxAmountLocalCurrency;
     }
 
-    public void setTotalTaxAmountLocalCurrency(AnonymousSchema56 totalTaxAmountLocalCurrency) {
+    public void setTotalTaxAmountLocalCurrency(AnonymousSchema54 totalTaxAmountLocalCurrency) {
         this.totalTaxAmountLocalCurrency = totalTaxAmountLocalCurrency;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TaxSummaryType taxSummaryType = (TaxSummaryType) o;
-        return 
-            Objects.equals(this.taxLines, taxSummaryType.taxLines) &&
-            Objects.equals(this.totalTaxAmountBillCurrency, taxSummaryType.totalTaxAmountBillCurrency) &&
-            Objects.equals(this.totalTaxAmountLocalCurrency, taxSummaryType.totalTaxAmountLocalCurrency);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(taxLines, totalTaxAmountBillCurrency, totalTaxAmountLocalCurrency);
-    }
+    
 
     @Override
     public String toString() {
         return "class TaxSummaryType {\n" +
         
-                "    taxLines: " + toIndentedString(taxLines) + "\n" +
+                "    taxLinesList: " + toIndentedString(taxLinesList) + "\n" +
                 "    totalTaxAmountBillCurrency: " + toIndentedString(totalTaxAmountBillCurrency) + "\n" +
                 "    totalTaxAmountLocalCurrency: " + toIndentedString(totalTaxAmountLocalCurrency) + "\n" +
                 "}";

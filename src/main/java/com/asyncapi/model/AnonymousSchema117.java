@@ -11,9 +11,12 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema110 {
+public class AnonymousSchema117 {
     
     private @Valid List<TransactionType> transactionList;
+    
+
+    
 
     
     @JsonProperty("transaction")
@@ -25,27 +28,11 @@ public class AnonymousSchema110 {
         this.transactionList = transactionList;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AnonymousSchema110 anonymousSchema110 = (AnonymousSchema110) o;
-        return 
-            Objects.equals(this.transactionList, anonymousSchema110.transactionList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(transactionList);
-    }
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema110 {\n" +
+        return "class AnonymousSchema117 {\n" +
         
                 "    transactionList: " + toIndentedString(transactionList) + "\n" +
                 "}";

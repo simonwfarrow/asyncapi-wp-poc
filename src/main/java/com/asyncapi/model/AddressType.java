@@ -106,29 +106,7 @@ public class AddressType {
         this.country = country;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AddressType addressType = (AddressType) o;
-        return 
-            Objects.equals(this.name, addressType.name) &&
-            Objects.equals(this.line1, addressType.line1) &&
-            Objects.equals(this.line2, addressType.line2) &&
-            Objects.equals(this.line3, addressType.line3) &&
-            Objects.equals(this.cityTown, addressType.cityTown) &&
-            Objects.equals(this.postcode, addressType.postcode) &&
-            Objects.equals(this.country, addressType.country);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, line1, line2, line3, cityTown, postcode, country);
-    }
+    
 
     @Override
     public String toString() {

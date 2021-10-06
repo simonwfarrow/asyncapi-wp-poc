@@ -11,13 +11,17 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema182 {
+public class AnonymousSchema179 {
     
     private @Valid CommunicationChannelType communicationChannel;
     
-    private @Valid AnonymousSchema187 emailContactList;
+    private @Valid AnonymousSchema184 emailContactList;
     
     private @Valid AddressType address;
+    
+
+    
+
     
     @JsonProperty("communicationChannel")
     public CommunicationChannelType getCommunicationChannel() {
@@ -31,11 +35,11 @@ public class AnonymousSchema182 {
 
     
     @JsonProperty("emailContactList")
-    public AnonymousSchema187 getEmailContactList() {
+    public AnonymousSchema184 getEmailContactList() {
         return emailContactList;
     }
 
-    public void setEmailContactList(AnonymousSchema187 emailContactList) {
+    public void setEmailContactList(AnonymousSchema184 emailContactList) {
         this.emailContactList = emailContactList;
     }
     
@@ -50,29 +54,11 @@ public class AnonymousSchema182 {
         this.address = address;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AnonymousSchema182 anonymousSchema182 = (AnonymousSchema182) o;
-        return 
-            Objects.equals(this.communicationChannel, anonymousSchema182.communicationChannel) &&
-            Objects.equals(this.emailContactList, anonymousSchema182.emailContactList) &&
-            Objects.equals(this.address, anonymousSchema182.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(communicationChannel, emailContactList, address);
-    }
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema182 {\n" +
+        return "class AnonymousSchema179 {\n" +
         
                 "    communicationChannel: " + toIndentedString(communicationChannel) + "\n" +
                 "    emailContactList: " + toIndentedString(emailContactList) + "\n" +

@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?><billRequest xmlns="http://www.worldpay.com/SchemasAndContracts/com/worldpay/contentmanagement/xsd/invoice_1_0.xsd"><invoice filename="12400023_PO4006784296_149541339">
+    <chargingCurrency>GBP</chargingCurrency>
+    <taxAuthorityCode>VAT</taxAuthorityCode>
+    <header>
+        <invoiceNumber>149541339</invoiceNumber>
+        <regenFlag>N</regenFlag>
+        <contactReasonTypeId>Invoice</contactReasonTypeId>
+        <documentTemplateTypeId>INVPREMD</documentTemplateTypeId>
+        <businessUnit>PO1300000002</businessUnit>
+        <externalPartyId>PO4006784296</externalPartyId>
+        <internalPartyId>PO1100000001</internalPartyId>
+        <invoiceDate>30 April 2021</invoiceDate>
+        <billCyclePeriod>01 April 2021 to 30 April 2021</billCyclePeriod>
+        <invoiceTitleMsg>Invoice</invoiceTitleMsg>
+        <premiumMsg>PremiumMsg</premiumMsg>
+        <bankAccount>
+            <accountName>LONDONEWCASTLE (SALES) LIMITED</accountName>
+            <number>XXXX6851</number>
+            <sortCode>XXX582</sortCode>
+            <debitDate>12 July 2021</debitDate>
+            <paymentInfoMsg>DIRECTDEBITPAYMENTMSG</paymentInfoMsg>
+        </bankAccount>
+        <taxRegNumber>GB991280207</taxRegNumber>
+        <paymentInfoMsg>DIRECTDEBITPAYMENTMSG</paymentInfoMsg>
+    </header>
+    <details>
+        <billingParty>
+            <charges>
+                <worldpayAcquiredCards>
+                    <fundingCurrencyList/>
+                </worldpayAcquiredCards>
+                <otherAcquirerCards>
+                    <fundingCurrencyList/>
+                </otherAcquirerCards>
+                <miscellaneous>
+                    <fundingCurrencyList>
+                        <fundingCurrency>
+                            <fundingCurrencyCode>GBP</fundingCurrencyCode>
+                            <headerName>Miscellaneous Charges (GBP Settled)</headerName>
+                            <pricingCurrencyCode>GBP</pricingCurrencyCode>
+                            <chargesList>
+                                <charge>
+                                    <headerName>Minimum Monthly Acquiring Charge</headerName>
+                                    <txnCount>1</txnCount>
+                                    <chargeRate>15.00000</chargeRate>
+                                    <chargeAmount>15.00</chargeAmount>
+                                    <taxCode>E</taxCode>
+                                </charge>
+                            </chargesList>
+                            <chargesSummary>
+                                <headerName>Total</headerName>
+                                <chargeAmount>15.00</chargeAmount>
+                            </chargesSummary>
+                        </fundingCurrency>
+                    </fundingCurrencyList>
+                </miscellaneous>
+            </charges>
+            <batchTotals>
+                <fundingCurrencyList/>
+            </batchTotals>
+        </billingParty>
+    </details>
+    <chargeSummary>
+        <charges>
+            <worldpayAcquiredCards>
+                <fundingCurrencyList>
+                    <fundingCurrency>
+                        <fundingCurrencyCode>GBP</fundingCurrencyCode>
+                        <headerName>Transaction Charges - Cards Acquired (GBP)</headerName>
+                        <chargeAmount>0.00</chargeAmount>
+                    </fundingCurrency>
+                </fundingCurrencyList>
+            </worldpayAcquiredCards>
+            <otherAcquirerCards>
+                <fundingCurrencyList>
+                    <fundingCurrency>
+                        <fundingCurrencyCode>GBP</fundingCurrencyCode>
+                        <headerName>Transaction Charges - Cards Processed for Other Acquirers (GBP)</headerName>
+                        <chargeAmount>0.00</chargeAmount>
+                    </fundingCurrency>
+                </fundingCurrencyList>
+            </otherAcquirerCards>
+            <miscellaneous>
+                <fundingCurrencyList>
+                    <fundingCurrency>
+                        <fundingCurrencyCode>GBP</fundingCurrencyCode>
+                        <headerName>Miscellaneous Charges (GBP)</headerName>
+                        <chargeAmount>15.00</chargeAmount>
+                    </fundingCurrency>
+                </fundingCurrencyList>
+            </miscellaneous>
+            <totalNetCharges>
+                <headerName>Total Charges</headerName>
+                <chargeAmount>15.00</chargeAmount>
+            </totalNetCharges>
+            <totalTaxAmount>
+                <headerName>VAT</headerName>
+                <chargeAmount>0.00</chargeAmount>
+            </totalTaxAmount>
+            <billTotalChargesDue>
+                <headerName>Total Due</headerName>
+                <chargeAmount>15.00</chargeAmount>
+            </billTotalChargesDue>
+        </charges>
+        <taxAnalysis>
+            <totalTaxAmountBillCurrency>0.00</totalTaxAmountBillCurrency>
+            <taxLines>
+                <taxLine>
+                    <headerName>E Exempt</headerName>
+                    <taxNetAmount>15.00</taxNetAmount>
+                    <taxRate>0.00%</taxRate>
+                    <taxAmount>0.00</taxAmount>
+                    <localNetAmount>15.00</localNetAmount>
+                </taxLine>
+            </taxLines>
+        </taxAnalysis>
+    </chargeSummary>
+</invoice></billRequest>

@@ -158,33 +158,7 @@ public class DetailedChargeFundingCurrencyLevelType {
         this.chargesGroupSummary = chargesGroupSummary;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DetailedChargeFundingCurrencyLevelType detailedChargeFundingCurrencyLevelType = (DetailedChargeFundingCurrencyLevelType) o;
-        return 
-            Objects.equals(this.fundingCurrencyCode, detailedChargeFundingCurrencyLevelType.fundingCurrencyCode) &&
-            Objects.equals(this.headerName, detailedChargeFundingCurrencyLevelType.headerName) &&
-            Objects.equals(this.pricingCurrencyCode, detailedChargeFundingCurrencyLevelType.pricingCurrencyCode) &&
-            Objects.equals(this.priceToChargeExchangeRate, detailedChargeFundingCurrencyLevelType.priceToChargeExchangeRate) &&
-            Objects.equals(this.priceToChargeExchangeMessage, detailedChargeFundingCurrencyLevelType.priceToChargeExchangeMessage) &&
-            Objects.equals(this.fundToChargeExchangeRate, detailedChargeFundingCurrencyLevelType.fundToChargeExchangeRate) &&
-            Objects.equals(this.fundToChargeExchangeMessage, detailedChargeFundingCurrencyLevelType.fundToChargeExchangeMessage) &&
-            Objects.equals(this.chargesGroup, detailedChargeFundingCurrencyLevelType.chargesGroup) &&
-            Objects.equals(this.chargesList, detailedChargeFundingCurrencyLevelType.chargesList) &&
-            Objects.equals(this.chargesSummary, detailedChargeFundingCurrencyLevelType.chargesSummary) &&
-            Objects.equals(this.chargesGroupSummary, detailedChargeFundingCurrencyLevelType.chargesGroupSummary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fundingCurrencyCode, headerName, pricingCurrencyCode, priceToChargeExchangeRate, priceToChargeExchangeMessage, fundToChargeExchangeRate, fundToChargeExchangeMessage, chargesGroup, chargesList, chargesSummary, chargesGroupSummary);
-    }
+    
 
     @Override
     public String toString() {

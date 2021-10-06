@@ -41,24 +41,7 @@ public class MarketingMessagesType {
         this.optInMarketMsgId = optInMarketMsgId;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MarketingMessagesType marketingMessagesType = (MarketingMessagesType) o;
-        return 
-            Objects.equals(this.optOutMarketMsgId, marketingMessagesType.optOutMarketMsgId) &&
-            Objects.equals(this.optInMarketMsgId, marketingMessagesType.optInMarketMsgId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(optOutMarketMsgId, optInMarketMsgId);
-    }
+    
 
     @Override
     public String toString() {

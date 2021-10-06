@@ -41,24 +41,7 @@ public class SummariesChargeListType {
         this.chargesSummary = chargesSummary;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        SummariesChargeListType summariesChargeListType = (SummariesChargeListType) o;
-        return 
-            Objects.equals(this.chargesListList, summariesChargeListType.chargesListList) &&
-            Objects.equals(this.chargesSummary, summariesChargeListType.chargesSummary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(chargesListList, chargesSummary);
-    }
+    
 
     @Override
     public String toString() {

@@ -28,23 +28,7 @@ public class CreditNoteDetailsType {
         this.charges = charges;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CreditNoteDetailsType creditNoteDetailsType = (CreditNoteDetailsType) o;
-        return 
-            Objects.equals(this.charges, creditNoteDetailsType.charges);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(charges);
-    }
+    
 
     @Override
     public String toString() {

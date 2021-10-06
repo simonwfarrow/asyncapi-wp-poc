@@ -41,24 +41,7 @@ public class ChargeSummaryType {
         this.chargeAmount = chargeAmount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ChargeSummaryType chargeSummaryType = (ChargeSummaryType) o;
-        return 
-            Objects.equals(this.headerName, chargeSummaryType.headerName) &&
-            Objects.equals(this.chargeAmount, chargeSummaryType.chargeAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(headerName, chargeAmount);
-    }
+    
 
     @Override
     public String toString() {

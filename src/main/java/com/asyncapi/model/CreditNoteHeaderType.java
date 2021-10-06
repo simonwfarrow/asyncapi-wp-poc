@@ -392,51 +392,7 @@ public class CreditNoteHeaderType {
         this.creditNoteReason = creditNoteReason;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CreditNoteHeaderType creditNoteHeaderType = (CreditNoteHeaderType) o;
-        return 
-            Objects.equals(this.creditNoteNumber, creditNoteHeaderType.creditNoteNumber) &&
-            Objects.equals(this.invoiceNumber, creditNoteHeaderType.invoiceNumber) &&
-            Objects.equals(this.contactReasonTypeId, creditNoteHeaderType.contactReasonTypeId) &&
-            Objects.equals(this.documentTemplateTypeId, creditNoteHeaderType.documentTemplateTypeId) &&
-            Objects.equals(this.businessUnit, creditNoteHeaderType.businessUnit) &&
-            Objects.equals(this.externalPartyId, creditNoteHeaderType.externalPartyId) &&
-            Objects.equals(this.internalPartyId, creditNoteHeaderType.internalPartyId) &&
-            Objects.equals(this.poNumber, creditNoteHeaderType.poNumber) &&
-            Objects.equals(this.previousBalance, creditNoteHeaderType.previousBalance) &&
-            Objects.equals(this.batchId, creditNoteHeaderType.batchId) &&
-            Objects.equals(this.batchTotalCount, creditNoteHeaderType.batchTotalCount) &&
-            Objects.equals(this.invoiceAmount, creditNoteHeaderType.invoiceAmount) &&
-            Objects.equals(this.invoicePackStart, creditNoteHeaderType.invoicePackStart) &&
-            Objects.equals(this.invoicePackEnd, creditNoteHeaderType.invoicePackEnd) &&
-            Objects.equals(this.totalInvoices, creditNoteHeaderType.totalInvoices) &&
-            Objects.equals(this.invoiceCounter, creditNoteHeaderType.invoiceCounter) &&
-            Objects.equals(this.creditNoteDate, creditNoteHeaderType.creditNoteDate) &&
-            Objects.equals(this.chargingPeriod, creditNoteHeaderType.chargingPeriod) &&
-            Objects.equals(this.creditNoteTitleMsg, creditNoteHeaderType.creditNoteTitleMsg) &&
-            Objects.equals(this.taxDisclaimerMsg, creditNoteHeaderType.taxDisclaimerMsg) &&
-            Objects.equals(this.marketingMsg, creditNoteHeaderType.marketingMsg) &&
-            Objects.equals(this.brochure, creditNoteHeaderType.brochure) &&
-            Objects.equals(this.premiumMsg, creditNoteHeaderType.premiumMsg) &&
-            Objects.equals(this.refundMsg, creditNoteHeaderType.refundMsg) &&
-            Objects.equals(this.taxZeroReversedMsg, creditNoteHeaderType.taxZeroReversedMsg) &&
-            Objects.equals(this.bankAccount, creditNoteHeaderType.bankAccount) &&
-            Objects.equals(this.taxRegNumber, creditNoteHeaderType.taxRegNumber) &&
-            Objects.equals(this.paymentInfoMsg, creditNoteHeaderType.paymentInfoMsg) &&
-            Objects.equals(this.creditNoteReason, creditNoteHeaderType.creditNoteReason);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(creditNoteNumber, invoiceNumber, contactReasonTypeId, documentTemplateTypeId, businessUnit, externalPartyId, internalPartyId, poNumber, previousBalance, batchId, batchTotalCount, invoiceAmount, invoicePackStart, invoicePackEnd, totalInvoices, invoiceCounter, creditNoteDate, chargingPeriod, creditNoteTitleMsg, taxDisclaimerMsg, marketingMsg, brochure, premiumMsg, refundMsg, taxZeroReversedMsg, bankAccount, taxRegNumber, paymentInfoMsg, creditNoteReason);
-    }
+    
 
     @Override
     public String toString() {

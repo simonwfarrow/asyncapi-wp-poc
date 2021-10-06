@@ -184,35 +184,7 @@ public class TransactionType {
         this.billAmount = billAmount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TransactionType transactionType = (TransactionType) o;
-        return 
-            Objects.equals(this.headerName, transactionType.headerName) &&
-            Objects.equals(this.subType, transactionType.subType) &&
-            Objects.equals(this.count, transactionType.count) &&
-            Objects.equals(this.chargePerTxn, transactionType.chargePerTxn) &&
-            Objects.equals(this.valueAmount, transactionType.valueAmount) &&
-            Objects.equals(this.txnCurrency, transactionType.txnCurrency) &&
-            Objects.equals(this.chargeRate, transactionType.chargeRate) &&
-            Objects.equals(this.chargeAmount, transactionType.chargeAmount) &&
-            Objects.equals(this.icFee, transactionType.icFee) &&
-            Objects.equals(this.schemeFee, transactionType.schemeFee) &&
-            Objects.equals(this.taxCode, transactionType.taxCode) &&
-            Objects.equals(this.taxAmount, transactionType.taxAmount) &&
-            Objects.equals(this.billAmount, transactionType.billAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(headerName, subType, count, chargePerTxn, valueAmount, txnCurrency, chargeRate, chargeAmount, icFee, schemeFee, taxCode, taxAmount, billAmount);
-    }
+    
 
     @Override
     public String toString() {

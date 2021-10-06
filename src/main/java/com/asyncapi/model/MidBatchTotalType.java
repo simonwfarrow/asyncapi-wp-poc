@@ -13,38 +13,22 @@ import java.util.Objects;
 
 public class MidBatchTotalType {
     
-    private @Valid List<AnonymousSchema174> batchListList;
+    private @Valid List<AnonymousSchema171> batchListList;
     
 
     
 
     
     @JsonProperty("batchList")
-    public List<AnonymousSchema174> getBatchList() {
+    public List<AnonymousSchema171> getBatchList() {
         return batchListList;
     }
 
-    public void setBatchList(List<AnonymousSchema174> batchListList) {
+    public void setBatchList(List<AnonymousSchema171> batchListList) {
         this.batchListList = batchListList;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MidBatchTotalType midBatchTotalType = (MidBatchTotalType) o;
-        return 
-            Objects.equals(this.batchListList, midBatchTotalType.batchListList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(batchListList);
-    }
+    
 
     @Override
     public String toString() {

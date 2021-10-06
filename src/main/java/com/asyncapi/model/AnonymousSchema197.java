@@ -11,32 +11,30 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema60 {
+public class AnonymousSchema197 {
+    
+    private @Valid String queryContact;
     
 
     
-    @Override
-    public boolean equals(Object o) {
-        boolean result = false;
-        if (this == o) {
-            result=true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            result=false;
-        }
-        AnonymousSchema60 anonymousSchema60 = (AnonymousSchema60) o;
-        return result;
+
+    
+    @JsonProperty("queryContact")
+    public String getQueryContact() {
+        return queryContact;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash();
+    public void setQueryContact(String queryContact) {
+        this.queryContact = queryContact;
     }
+    
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema60 {\n" +
+        return "class AnonymousSchema197 {\n" +
         
+                "    queryContact: " + toIndentedString(queryContact) + "\n" +
                 "}";
     }
 

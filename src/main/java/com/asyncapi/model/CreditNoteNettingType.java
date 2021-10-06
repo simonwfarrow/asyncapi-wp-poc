@@ -93,28 +93,7 @@ public class CreditNoteNettingType {
         this.recalcPaymentInfoMsg = recalcPaymentInfoMsg;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CreditNoteNettingType creditNoteNettingType = (CreditNoteNettingType) o;
-        return 
-            Objects.equals(this.currentInvoiceNumber, creditNoteNettingType.currentInvoiceNumber) &&
-            Objects.equals(this.currentInvoiceAmount, creditNoteNettingType.currentInvoiceAmount) &&
-            Objects.equals(this.linkedCreditNoteNumber, creditNoteNettingType.linkedCreditNoteNumber) &&
-            Objects.equals(this.linkedCreditNoteAmount, creditNoteNettingType.linkedCreditNoteAmount) &&
-            Objects.equals(this.currentInvoiceLessCreditNoteAmount, creditNoteNettingType.currentInvoiceLessCreditNoteAmount) &&
-            Objects.equals(this.recalcPaymentInfoMsg, creditNoteNettingType.recalcPaymentInfoMsg);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(currentInvoiceNumber, currentInvoiceAmount, linkedCreditNoteNumber, linkedCreditNoteAmount, currentInvoiceLessCreditNoteAmount, recalcPaymentInfoMsg);
-    }
+    
 
     @Override
     public String toString() {

@@ -41,24 +41,7 @@ public class InvoiceSummaryType {
         this.taxAnalysis = taxAnalysis;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        InvoiceSummaryType invoiceSummaryType = (InvoiceSummaryType) o;
-        return 
-            Objects.equals(this.charges, invoiceSummaryType.charges) &&
-            Objects.equals(this.taxAnalysis, invoiceSummaryType.taxAnalysis);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(charges, taxAnalysis);
-    }
+    
 
     @Override
     public String toString() {

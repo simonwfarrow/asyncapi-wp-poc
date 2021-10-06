@@ -54,25 +54,7 @@ public class DetailedBatchTotalFundingCurrencyLevelType {
         this.batchListList = batchListList;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DetailedBatchTotalFundingCurrencyLevelType detailedBatchTotalFundingCurrencyLevelType = (DetailedBatchTotalFundingCurrencyLevelType) o;
-        return 
-            Objects.equals(this.fundingCurrencyCode, detailedBatchTotalFundingCurrencyLevelType.fundingCurrencyCode) &&
-            Objects.equals(this.headerName, detailedBatchTotalFundingCurrencyLevelType.headerName) &&
-            Objects.equals(this.batchListList, detailedBatchTotalFundingCurrencyLevelType.batchListList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fundingCurrencyCode, headerName, batchListList);
-    }
+    
 
     @Override
     public String toString() {

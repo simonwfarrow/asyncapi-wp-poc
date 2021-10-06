@@ -93,28 +93,7 @@ public class TaxAnalysisType {
         this.localNetAmount = localNetAmount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TaxAnalysisType taxAnalysisType = (TaxAnalysisType) o;
-        return 
-            Objects.equals(this.taxCode, taxAnalysisType.taxCode) &&
-            Objects.equals(this.headerName, taxAnalysisType.headerName) &&
-            Objects.equals(this.taxNetAmount, taxAnalysisType.taxNetAmount) &&
-            Objects.equals(this.taxRate, taxAnalysisType.taxRate) &&
-            Objects.equals(this.taxAmount, taxAnalysisType.taxAmount) &&
-            Objects.equals(this.localNetAmount, taxAnalysisType.localNetAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(taxCode, headerName, taxNetAmount, taxRate, taxAmount, localNetAmount);
-    }
+    
 
     @Override
     public String toString() {

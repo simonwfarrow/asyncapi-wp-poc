@@ -11,13 +11,15 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AnonymousSchema56 {
+public class AnonymousSchema54 {
     
     private @Valid String localTotalTaxAmount;
     
     private @Valid String localCurrencyCode;
     
     private @Valid String exchangeRate;
+    
+
     
 
     
@@ -52,29 +54,11 @@ public class AnonymousSchema56 {
         this.exchangeRate = exchangeRate;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AnonymousSchema56 anonymousSchema56 = (AnonymousSchema56) o;
-        return 
-            Objects.equals(this.localTotalTaxAmount, anonymousSchema56.localTotalTaxAmount) &&
-            Objects.equals(this.localCurrencyCode, anonymousSchema56.localCurrencyCode) &&
-            Objects.equals(this.exchangeRate, anonymousSchema56.exchangeRate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(localTotalTaxAmount, localCurrencyCode, exchangeRate);
-    }
+    
 
     @Override
     public String toString() {
-        return "class AnonymousSchema56 {\n" +
+        return "class AnonymousSchema54 {\n" +
         
                 "    localTotalTaxAmount: " + toIndentedString(localTotalTaxAmount) + "\n" +
                 "    localCurrencyCode: " + toIndentedString(localCurrencyCode) + "\n" +

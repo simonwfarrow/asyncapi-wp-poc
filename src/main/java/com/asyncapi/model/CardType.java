@@ -17,7 +17,7 @@ public class CardType {
     
     private @Valid String headerName;
     
-    private @Valid AnonymousSchema110 transactions;
+    private @Valid AnonymousSchema117 transactions;
     
     private @Valid Object cardSummary;
     
@@ -48,11 +48,11 @@ public class CardType {
 
     
     @JsonProperty("transactions")
-    public AnonymousSchema110 getTransactions() {
+    public AnonymousSchema117 getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(AnonymousSchema110 transactions) {
+    public void setTransactions(AnonymousSchema117 transactions) {
         this.transactions = transactions;
     }
     
@@ -67,26 +67,7 @@ public class CardType {
         this.cardSummary = cardSummary;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CardType cardType = (CardType) o;
-        return 
-            Objects.equals(this.id, cardType.id) &&
-            Objects.equals(this.headerName, cardType.headerName) &&
-            Objects.equals(this.transactions, cardType.transactions) &&
-            Objects.equals(this.cardSummary, cardType.cardSummary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, headerName, transactions, cardSummary);
-    }
+    
 
     @Override
     public String toString() {

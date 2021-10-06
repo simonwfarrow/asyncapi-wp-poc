@@ -19,7 +19,7 @@ public class WorldpayType {
     
     private @Valid String taxRegNumber;
     
-    private @Valid AnonymousSchema199 contact;
+    private @Valid AnonymousSchema196 contact;
     
 
     
@@ -59,34 +59,15 @@ public class WorldpayType {
 
     
     @JsonProperty("contact")
-    public AnonymousSchema199 getContact() {
+    public AnonymousSchema196 getContact() {
         return contact;
     }
 
-    public void setContact(AnonymousSchema199 contact) {
+    public void setContact(AnonymousSchema196 contact) {
         this.contact = contact;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        WorldpayType worldpayType = (WorldpayType) o;
-        return 
-            Objects.equals(this.brandId, worldpayType.brandId) &&
-            Objects.equals(this.legalNoteId, worldpayType.legalNoteId) &&
-            Objects.equals(this.taxRegNumber, worldpayType.taxRegNumber) &&
-            Objects.equals(this.contact, worldpayType.contact);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(brandId, legalNoteId, taxRegNumber, contact);
-    }
+    
 
     @Override
     public String toString() {

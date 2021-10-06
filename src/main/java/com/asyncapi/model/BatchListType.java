@@ -28,23 +28,7 @@ public class BatchListType {
         this.batchTotal = batchTotal;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        BatchListType batchListType = (BatchListType) o;
-        return 
-            Objects.equals(this.batchTotal, batchListType.batchTotal);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(batchTotal);
-    }
+    
 
     @Override
     public String toString() {

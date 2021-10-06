@@ -40,7 +40,7 @@ channels:
   PMS_BILLREQUEST:
     description: A topic for invoice data publication/subscription
     subscribe:
-      operationId: PMSBILLREQUEST-UUID1
+      operationId: PMSBILLREQUEST_UUID1
       summary: Get invoice data messages
       description: A topic (channel) containing invoice data events that consumers can subscribe to, each event will encapsulate all invoice data lines for a single merchant
       message:
@@ -57,7 +57,7 @@ channels:
             pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
         bindingVersion: '0.1.0'
     publish:
-      operationId: PMSBILLREQUEST-UUID2
+      operationId: PMSBILLREQUEST_UUID2
       summary: Put invoice data messages
       description: A topic (channel) to which invoice data events are prublished. Each event will encapsulate all invoice data lines for a single merchant
       message:
@@ -575,13 +575,7 @@ components:
         chargeSummary:
           $ref: '#/components/schemas/invoiceSummaryType'
         details:
-          type: object
-          oneoff:
-            - properties:
-                billingParty:
-                  $ref: '#/components/schemas/invoiceDetailsType'
-                summaries:
-                  $ref: '#/components/schemas/summaryInvoiceType'
+          $ref: '#/components/schemas/invoiceDetailsType'
         # added to output invoice number and party id as filename
         filename:
           # Can we set a format for this ?
@@ -609,6 +603,12 @@ components:
                   $ref: '#/components/schemas/summaryInvoiceType'
 
     invoiceDetailsType:
+      type: object
+      properties:
+        billingParty:
+          $ref: '#/components/schemas/invoiceDetailsBillingPartyType'
+
+    invoiceDetailsBillingPartyType:
       type: object
       properties:
         charges:
@@ -839,16 +839,16 @@ components:
         taxAnalysis:
           $ref: '#/components/schemas/taxSummaryType'
 
+    taxLinesType:
+      type: array
+      items:
+        $ref: '#/components/schemas/taxAnalysisType'
+
     taxSummaryType:
       type: object
       properties:
         taxLines:
-          type: object
-          properties:
-            taxLine:
-              type: array
-              items:
-                $ref: '#/components/schemas/taxAnalysisType'
+          $ref: '#/components/schemas/taxLinesType'
         totalTaxAmountBillCurrency:
           # Can we set a format for this ?
           type: string

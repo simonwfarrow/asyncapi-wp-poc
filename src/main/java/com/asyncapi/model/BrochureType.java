@@ -41,24 +41,7 @@ public class BrochureType {
         this.brochureCode = brochureCode;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        BrochureType brochureType = (BrochureType) o;
-        return 
-            Objects.equals(this.brochureName, brochureType.brochureName) &&
-            Objects.equals(this.brochureCode, brochureType.brochureCode);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(brochureName, brochureCode);
-    }
+    
 
     @Override
     public String toString() {

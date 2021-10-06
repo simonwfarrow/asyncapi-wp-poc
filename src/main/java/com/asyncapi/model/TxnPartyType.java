@@ -67,26 +67,7 @@ public class TxnPartyType {
         this.fundingCurrencyList = fundingCurrencyList;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        TxnPartyType txnPartyType = (TxnPartyType) o;
-        return 
-            Objects.equals(this.storeref, txnPartyType.storeref) &&
-            Objects.equals(this.txnPartyId, txnPartyType.txnPartyId) &&
-            Objects.equals(this.town, txnPartyType.town) &&
-            Objects.equals(this.fundingCurrencyList, txnPartyType.fundingCurrencyList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(storeref, txnPartyId, town, fundingCurrencyList);
-    }
+    
 
     @Override
     public String toString() {

@@ -17,6 +17,10 @@ public class BillRequest {
     
     private @Valid CreditNoteType creditNote;
     
+
+    
+
+    
     @JsonProperty("invoice")
     public InvoiceType getInvoice() {
         return invoice;
@@ -37,24 +41,7 @@ public class BillRequest {
         this.creditNote = creditNote;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        BillRequest billRequest = (BillRequest) o;
-        return 
-            Objects.equals(this.invoice, billRequest.invoice) &&
-            Objects.equals(this.creditNote, billRequest.creditNote);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(invoice, creditNote);
-    }
+    
 
     @Override
     public String toString() {

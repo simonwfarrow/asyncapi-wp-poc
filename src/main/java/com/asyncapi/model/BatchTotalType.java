@@ -80,27 +80,7 @@ public class BatchTotalType {
         this.netAmount = netAmount;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        BatchTotalType batchTotalType = (BatchTotalType) o;
-        return 
-            Objects.equals(this.date, batchTotalType.date) &&
-            Objects.equals(this.startRef, batchTotalType.startRef) &&
-            Objects.equals(this.grossAmount, batchTotalType.grossAmount) &&
-            Objects.equals(this.adjustmentAmount, batchTotalType.adjustmentAmount) &&
-            Objects.equals(this.netAmount, batchTotalType.netAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(date, startRef, grossAmount, adjustmentAmount, netAmount);
-    }
+    
 
     @Override
     public String toString() {

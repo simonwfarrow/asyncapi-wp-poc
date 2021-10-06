@@ -1,0 +1,1360 @@
+# The AsyncAPI specification adequately covers all of the key elements in the preceding paragraph, simplifying
+# the representation of this complex topology. An event stream is represented as a channel. The message
+# definition allows both payload schema and header information. The message bus (or broker) is represented
+# in an AsyncAPI contract as the Server. Servers can have associated security requirements. The set of event
+# emitters are defined as Producers and listeners as Consumers.
+asyncapi: 2.2.0
+# AsyncAPI recommends using URNs for identifying a specification. The important thing is that you have an id with a unique string
+id: 'urn:com:worldpay:pms:billrequest'
+# Used to capture useful information about the context of this specification.
+info:
+  title: Billing and Funding Invoice Data
+  version: 1.0.0
+  description: "This publication exposes invoice data from Billing and Funding domain.\n\n"
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+
+# This section provides details of how client applications can connect to the service being provided, note that here
+# we specify a single host for test, and two kafka brokers for PT1 environment. Note there is currently an issue with
+# this in that async api tools would use all brokers defined in connection strings, this may be resolved in due course
+# so in the meantime we may need separate specs for different environments.
+servers:
+  test:
+    url: localhost:9092
+    protocol: kafka
+    protocolVersion: '1.0.0'
+    description: Dev Test broker
+  #  pt1:
+  #    broker0:
+  #        url: pt1-srv0:9092
+  #        protocol: kafka
+  #        protocolVersion: '1.0.0'
+  #    broker1:
+  #        url: pt1-srv1:9092
+  #        protocol: kafka
+  #        protocolVersion: '1.0.0'
+
+# This sections specifies the channels for this specification, in kafka channels are equivalent to topics
+channels:
+  PMS_BILLREQUEST:
+    description: A topic for invoice data publication/subscription
+    subscribe:
+      operationId: PMSBILLREQUEST-UUID1
+      summary: Get invoice data messages
+      description: A topic (channel) containing invoice data events that consumers can subscribe to, each event will encapsulate all invoice data lines for a single merchant
+      message:
+        $ref: '#/components/messages/billRequest'
+      bindings:
+        kafka:
+          groupId:
+            type: string
+          clientId:
+            type: string
+          key:
+            type: string
+            format: uuid
+            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: PMSBILLREQUEST-UUID2
+      summary: Put invoice data messages
+      description: A topic (channel) to which invoice data events are prublished. Each event will encapsulate all invoice data lines for a single merchant
+      message:
+        $ref: '#/components/messages/billRequest'
+      bindings:
+        kafka:
+          groupId:
+            type: string
+          clientId:
+            type: string
+          key:
+            type: string
+            format: uuid
+            pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+        bindingVersion: '0.1.0'
+components:
+  messages:
+    billRequest:
+      name: pms_billRequest
+      title: A message containing invoice data for a single merchant.
+      summary: An invoice data message
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/billRequest"
+
+  schemas:
+    packageInfoType:
+      type: object
+      properties:
+        # key1 is the Group level category e.g. Invoices
+        key1:
+          type: string
+        # key2 is the Business area category : Invoice
+        key2:
+          type: string
+        # tranCode is the template specific code => tariff : premium, Ic+, iC++ for this specicific type version
+        tranCode:
+          type: string
+        # keyId is the subcategory
+        keyId:
+          type: integer
+          format: int32
+        # creationTime is the date & time of this XML from the ODI job used for audit
+        creationTime:
+          type: string
+          # The date time notation as defined by RFC 3339, section 5.6, 2017-07-21T17:32:28Z
+          format: date-time
+        # description - for readability and used for audit
+        description:
+          type: string
+
+    txnPartiesType:
+      type object:
+      properties:
+        txnParty:
+          type: array
+          items:
+            $ref: '#/components/schemas/txnPartyType'
+
+    detailedCardFundingCurrencyListType:
+      type object:
+      properties:
+        fundingCurrencyList:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedCardFundingCurrencySubType'
+
+    detailedChargeFundingCurrencyListSummaryType:
+      type object:
+      properties:
+        fundingCurrencyList:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedChargeFundingCurrencySubType'
+
+    detailedBatchTotalFundingCurrencyListSummaryType:
+      type object:
+      properties:
+        fundingCurrencyList:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedBatchTotalFundingCurrencySubType'
+
+    summaryChargeFundingCurrencyListSummaryType:
+      type object:
+      properties:
+        fundingCurrencyList:
+          type: array
+          items:
+            $ref: '#/components/schemas/summaryChargeFundingCurrencySubType'
+
+    detailedChargeListSummaryType:
+      type object:
+      properties:
+        charge:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedChargeType'
+
+    summariesChargeType:
+      type object:
+      properties:
+        charge:
+          type: array
+          items:
+            $ref: '#/components/schemas/summariesCardType'
+
+    cardSummaryType:
+      headerName:
+        type: string
+      txnCount:
+        # Could be set to integer, format int64
+        type: string
+      txnValue:
+        # Could be set to number, format double
+        type: string
+      icFee:
+        # Can we set a format for this ?
+        type: string
+      schemeFee:
+        # Can we set a format for this ?
+        type: string
+      chargeAmount:
+        # Can we set a format for this ?
+        type: string
+      billAmount:
+        # Can we set a format for this ?
+        type: string
+
+    summariesCardType:
+      headerName:
+        # Can we set a format for this
+        type: string
+      txnCount:
+        # Can we set a format for this
+        type: string
+      txnValue:
+        # Can we set a format for this
+        type: string
+      pricingCurrencyCode:
+        # Can we set a format for thisode:
+        type: string
+      rate:
+        # Can we set a format for this
+        type: string
+      icFee:
+        # Can we set a format for this
+        type: string
+      schemeFee:
+        # Can we set a format for this
+        type: string
+      chargeAmount:
+        # Can we set a format for this
+        type: string
+      taxCode:
+        # Can we set a format for this
+        type: string
+      taxAmount:
+        # Can we set a format for this
+        type: string
+      billAmount:
+        # Can we set a format for this
+        type: string
+
+    detailedCardFundingCurrencySubType:
+      type object:
+      properties:
+        fundingCurrency:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedCardFundingCurrencyLevelType'
+
+    detailedChargeFundingCurrencySubType:
+      type object:
+      properties:
+        fundingCurrency:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedChargeFundingCurrencyLevelType'
+
+    detailedBatchTotalFundingCurrencySubType:
+      type object:
+      properties:
+        fundingCurrency:
+          type: array
+          items:
+            $ref: '#/components/schemas/detailedBatchTotalFundingCurrencyLevelType'
+
+    summariesCardListType:
+      type: object
+      properties:
+        cardList:
+          type: array
+          items:
+            $ref: '#/components/schemas/summariesCardsType'
+        allCardsSummary:
+          $ref: '#/components/schemas/summariesCardsType'
+
+
+    summariesChargeListType:
+      type: object
+      properties:
+        chargesList:
+          type: array
+          items:
+            $ref: '#/components/schemas/summariesChargeType'
+        chargesSummary:
+          $ref: '#/components/schemas/summariesCardType'
+
+    detailedCardFundingCurrencyLevelType:
+      type: object
+      properties:
+        fundingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        pricingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+        priceToChargeExchangeRate:
+          # Can we set a format for this ?
+          type: string
+        priceToChargeExchangeMessage:
+          # Can we set a format for this ?
+          type: string
+        fundToChargeExchangeRate:
+          # Can we set a format for this ?
+          type: string
+        fundToChargeExchangeMessage:
+          # Can we set a format for this ?
+          type: string
+        cardList:
+          $ref: '#/components/schemas/cardTxnSummaryType'
+        allCardsSummary:
+          $ref: '#/components/schemas/cardSummaryType'
+
+    detailedChargeFundingCurrencyLevelType:
+      type: object
+      properties:
+        fundingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        pricingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+        priceToChargeExchangeRate:
+          # Can we set a format for this ?
+          type: string
+        priceToChargeExchangeMessage:
+          # Can we set a format for this ?
+          type: string
+        fundToChargeExchangeRate:
+          # Can we set a format for this ?
+          type: string
+        fundToChargeExchangeMessage:
+          # Can we set a format for this ?
+          type: string
+        chargesGroup:
+          $ref: '#/components/schemas/detailedChargeListType'
+        chargesList:
+          $ref: '#/components/schemas/detailedChargeListSummaryType'
+        chargesSummary:
+          $ref: '#/components/schemas/detailedChargeType'
+        chargesGroupSummary:
+          $ref: '#/components/schemas/detailedChargeType'
+
+    detailedBatchTotalFundingCurrencyLevelType:
+      type: object
+      properties:
+        fundingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        batchList:
+          type: array
+          items:
+            $ref: '#/components/schemas/batchListType'
+
+    batchListType:
+      type: object
+      properties:
+        batchTotal:
+          $ref: '#/components/schemas/batchTotalType'
+
+
+    summaryChargeFundingCurrencyLevelType:
+      type: object
+      properties:
+        fundingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+      headerName:
+        # Can we set a format for this ?
+        type: string
+      chargeAmount:
+        # Can we set a format for this ?
+        type: string
+
+    summaryChargeFundingCurrencySubType:
+      type: object
+      properties:
+        fundingCurrency:
+          type: array
+          items:
+            $ref: '#/components/schemas/summaryChargeFundingCurrencyLevelType'
+
+    cardTxnSummaryType:
+      type: object
+      properties:
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/cardType'
+
+    cardType:
+      type: object
+      properties:
+        id:
+          # Can we set a format for this ?
+          type: string
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        transactions:
+          type: object
+          properties:
+            transaction:
+              type: array
+              items:
+                $ref: '#/components/schemas/transactionType'
+        cardSummary:
+          $ref: '#/components/schemas/cardSummaryType'
+
+
+    transactionType:
+      type: object
+      properties:
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        subType:
+          # Can we set a format for this ?
+          type: string
+        count:
+          # Can we set a format for this ?
+          type: integer
+          format: int32
+        # This is not needed for IC++ tariff type
+        chargePerTxn:
+          # Can we set a format for this ?
+          type: string
+        valueAmount:
+          # Can we set a format for this ?
+          type: string
+        # Does the value of transactions displayed in transaction currency or funding currency
+        txnCurrency:
+          # Can we set a format for this ?
+          type: string
+        chargeRate:
+          # Can we set a format for this ?
+          type: string
+        chargeAmount:
+          # Can we set a format for this ?
+          type: string
+        icFee:
+          # Can we set a format for this ?
+          type: string
+        schemeFee:
+          # Can we set a format for this ?
+          type: string
+        taxCode:
+          # Can we set a format for this ?
+          type: string
+        taxAmount:
+          # Can we set a format for this ?
+          type: string
+        billAmount:
+          # Can we set a format for this ?
+          type: string
+
+    summariesCardsType:
+      type: object
+      properties:
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/summariesCardType'
+
+    txnPartyType:
+      type: object
+      properties:
+        storeref:
+          # Can we set a format for this ?
+          type: string
+        txnPartyId:
+          # Can we set a format for this ?
+          type: string
+        town:
+          # Can we set a format for this ?
+          type: string
+        fundingCurrencyList:
+          object:
+          properties:
+            fundingCurrency:
+              type: array
+              items:
+                $ref: '#/components/schemas/fundingCurrencyType'
+
+    fundingCurrencyType:
+      type: object
+      properties:
+        fundingCurrencyCode:
+          # Can we set a format for this ?
+          type: string
+        charges:
+          $ref: '#/components/schemas/summariesChargeTopCategoryType'
+        totals:
+          $ref: '#/components/schemas/txnPartySummaryType'
+        chargesPayable:
+          $ref: '#/components/schemas/txnPartySummaryType'
+
+    detailedChargeTopCategoryType:
+      type: object
+      properties:
+        worldpayAcquiredCards:
+          $ref: '#/components/schemas/detailedCardFundingCurrencyListType'
+        otherAcquirerCards:
+          $ref: '#/components/schemas/detailedCardFundingCurrencyListType'
+        chargebacks:
+          $ref: '#/components/schemas/detailedChargeFundingCurrencyListSummaryType'
+        premium:
+          $ref: '#/components/schemas/detailedChargeFundingCurrencyListSummaryType'
+        miscellaneous:
+          $ref: '#/components/schemas/detailedChargeFundingCurrencyListSummaryType'
+        otherFees:
+          $ref: '#/components/schemas/detailedChargeFundingCurrencyListSummaryType'
+
+    summariesChargeTopCategoryType:
+      type object:
+      properties:
+        worldpayAcquiredCards:
+          $ref: '#/components/schemas/summariesCardListType'
+        otherAcquirerCards:
+          $ref: '#/components/schemas/summariesCardListType'
+        chargebacks:
+          $ref: '#/components/schemas/summariesChargeListType'
+        premium:
+          $ref: '#/components/schemas/summariesChargeListType'
+        miscellaneous:
+          $ref: '#/components/schemas/summariesChargeListType'
+        otherFees:
+          $ref: '#/components/schemas/summariesChargeListType'
+
+    summaryInvoiceType:
+      type object:
+      properties:
+        txnParties:
+          $ref: '#/components/schemas/txnPartiesType'
+        allTxnPartySummary:
+          $ref: '#/components/schemas/txnPartyType'
+
+    detailedChargeListType:
+      type object:
+      properties:
+        chargesList:
+          $ref: '#/components/schemas/detailedChargeListSummaryType'
+        chargesSummary:
+          $ref: '#/components/schemas/detailedChargeType'
+
+    detailedChargeType:
+      type: object
+      properties:
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        txnCount:
+          # Can we set a format for this ?
+          type: string
+        chargePerTxn:
+          # Can we set a format for this ?
+          type: string
+        txnValue:
+          # Can we set a format for this ?
+          type: string
+        chargeRate:
+          # Can we set a format for this ?
+          type: string
+        chargeAmount:
+          # Can we set a format for this ?
+          type: string
+        taxCode:
+          # Can we set a format for this ?
+          type: string
+        sourceMerchantID:
+          # Can we set a format for this ?
+          type: string
+    invoiceType:
+      type: object
+      properties:
+        chargingCurrency:
+          # Can we set a format for this ?
+          type: string
+        taxAuthorityCode:
+          # Can we set a format for this ?
+          type: string
+        header:
+          $ref: '#/components/schemas/invoiceHeaderType'
+        chargeSummary:
+          $ref: '#/components/schemas/invoiceSummaryType'
+        details:
+          type: object
+          oneoff:
+            - properties:
+                billingParty:
+                  $ref: '#/components/schemas/invoiceDetailsType'
+                summaries:
+                  $ref: '#/components/schemas/summaryInvoiceType'
+        # added to output invoice number and party id as filename
+        filename:
+          # Can we set a format for this ?
+          type: string
+    creditNoteType:
+      type: object
+      properties:
+        chargingCurrency:
+          # Can we set a format for this ?
+          type: string
+        taxAuthorityCode:
+          # Can we set a format for this ?
+          type: string
+        header:
+          $ref: '#/components/schemas/creditNoteHeaderType'
+        chargeSummary:
+          $ref: '#/components/schemas/invoiceSummaryType'
+        details:
+          type: object
+          oneoff:
+            - properties:
+                billingParty:
+                  $ref: '#/components/schemas/creditNoteDetailsType'
+                summaries:
+                  $ref: '#/components/schemas/summaryInvoiceType'
+
+    invoiceDetailsType:
+      type: object
+      properties:
+        charges:
+          $ref: '#/components/schemas/detailedChargeTopCategoryType'
+        batchTotals:
+          $ref: '#/components/schemas/detailedBatchTotalFundingCurrencyListSummaryType'
+        overpayments:
+          $ref: '#/components/schemas/overpaymentsType'
+        creditNoteNetting:
+          $ref: '#/components/schemas/creditNoteNettingType'
+
+    creditNoteDetailsType:
+      type: object
+      properties:
+        charges:
+          $ref: '#/components/schemas/detailedChargeTopCategoryType'
+
+    midBatchTotalType:
+      type: object
+      properties:
+        batchList:
+          type: array
+          items:
+            type: object
+            properties:
+              batchTotal:
+                $ref: '#/components/schemas/batchTotalType'
+
+    batchTotalType:
+      type: object
+      properties:
+        date:
+          # Can we set a format for this ?
+          type: string
+        startRef:
+          # Can we set a format for this ?
+          type: string
+        grossAmount:
+          # Can we set a format for this ?
+          type: string
+        adjustmentAmount:
+          # Can we set a format for this ?
+          type: string
+        netAmount:
+          # Can we set a format for this ?
+          type: string
+
+    invoiceHeaderType:
+      type: object
+      properties:
+        invoiceNumber:
+          # Can we set a format for this ?
+          type: string
+        regenFlag:
+          # Can we set a format for this ?
+          type: string
+        contactReasonTypeId:
+          # Can we set a format for this ?
+          type: string
+        documentTemplateTypeId:
+          # Can we set a format for this ?
+          type: string
+        businessUnit:
+          # Can we set a format for this ?
+          type: string
+        externalPartyId:
+          # Can we set a format for this ?
+          type: string
+        internalPartyId:
+          # Can we set a format for this ?
+          type: string
+        poNumber:
+          # Can we set a format for this ?
+          type: string
+        previousBalance:
+          # Can we set a format for this ?
+          type: string
+        batchId:
+          # Can we set a format for this ?
+          type: string
+        batchTotalCount:
+          type: integer
+          format: int64
+        invoicePackStart:
+          # Can we set a format for this ?
+          type: string
+        invoicePackEnd:
+          # Can we set a format for this ?
+          type: string
+        totalInvoices:
+          type: integer
+          format: int64
+        invoiceCounter:
+          type: integer
+          format: int64
+        invoiceDate:
+          # Can we set a format for this ?
+          type: string
+        billCyclePeriod:
+          # Can we set a format for this ?
+          type: string
+        invoiceTitleMsg:
+          # Can we set a format for this ?
+          type: string
+        taxDisclaimerMsg:
+          # Can we set a format for this ?
+          type: string
+        marketingMsg:
+          $ref: '#/components/schemas/marketingMessagesType'
+        brochure:
+          $ref: '#/components/schemas/brochureType'
+        premiumMsg:
+          # Can we set a format for this ?
+          type: string
+        taxZeroReversedMsg:
+          # Can we set a format for this ?
+          type: string
+        bankAccount:
+          $ref: '#/components/schemas/merchantBankAccountType'
+        worldpayBankAccount:
+          $ref: '#/components/schemas/worldpayBankAccountType'
+        taxRegNumber:
+          # Can we set a format for this ?
+          type: string
+        paymentInfoMsg:
+          # Can we set a format for this ?
+          type: string
+        paymentInvoiceNumber:
+          # Can we set a format for this ?
+          type: string
+        paymentInvoiceAmount:
+          # Can we set a format for this ?
+          type: string
+
+    creditNoteHeaderType:
+      type: object
+      properties:
+        creditNoteNumber:
+          # Can we set a format for this ?
+          type: string
+        invoiceNumber:
+          # Can we set a format for this ?
+          type: string
+        contactReasonTypeId:
+          # Can we set a format for this ?
+          type: string
+        documentTemplateTypeId:
+          # Can we set a format for this ?
+          type: string
+        businessUnit:
+          # Can we set a format for this ?
+          type: string
+        externalPartyId:
+          # Can we set a format for this ?
+          type: string
+        internalPartyId:
+          # Can we set a format for this ?
+          type: string
+        poNumber:
+          # Can we set a format for this ?
+          type: string
+        previousBalance:
+          # Can we set a format for this ?
+          type: string
+        batchId:
+          # Can we set a format for this ?
+          type: string
+        batchTotalCount:
+          type: integer
+          format: int64
+        invoiceAmount:
+          # Can we set a format for this ?
+          type: string
+        invoicePackStart:
+          # Can we set a format for this ?
+          type: string
+        invoicePackEnd:
+          # Can we set a format for this ?
+          type: string
+        totalInvoices:
+          type: integer
+          format: int64
+        invoiceCounter:
+          # Can we set a format for this ?
+          type: string
+        creditNoteDate:
+          # Can we set a format for this ?
+          type: string
+        chargingPeriod:
+          # Can we set a format for this ?
+          type: string
+        creditNoteTitleMsg:
+          # Can we set a format for this ?
+          type: string
+        taxDisclaimerMsg:
+          # Can we set a format for this ?
+          type: string
+        marketingMsg:
+          $ref: '#/components/schemas/marketingMessagesType'
+        brochure:
+          $ref: '#/components/schemas/brochureType'
+        premiumMsg:
+          # Can we set a format for this ?
+          type: string
+        refundMsg:
+          # Can we set a format for this ?
+          type: string
+        taxZeroReversedMsg:
+          # Can we set a format for this ?
+          type: string
+        bankAccount:
+          $ref: '#/components/schemas/merchantBankAccountType'
+        taxRegNumber:
+          # Can we set a format for this ?
+          type: string
+        paymentInfoMsg:
+          # Can we set a format for this ?
+          type: string
+        creditNoteReason:
+          # Can we set a format for this ?
+          type: string
+
+    invoiceSummaryType:
+      type: object
+      properties:
+        charges:
+          $ref: '#/components/schemas/summaryLevelChargesSubType'
+        taxAnalysis:
+          $ref: '#/components/schemas/taxSummaryType'
+
+    taxSummaryType:
+      type: object
+      properties:
+        taxLines:
+          type: object
+          properties:
+            taxLine:
+              type: array
+              items:
+                $ref: '#/components/schemas/taxAnalysisType'
+        totalTaxAmountBillCurrency:
+          # Can we set a format for this ?
+          type: string
+        totalTaxAmountLocalCurrency:
+          type: object
+          properties:
+            localTotalTaxAmount:
+              # Can we set a format for this ?
+              type: string
+            localCurrencyCode:
+              # Can we set a format for this ?
+              type: string
+            exchangeRate:
+              # Can we set a format for this ?
+              type: string
+
+    taxAnalysisType:
+      type: object
+      properties:
+        taxCode:
+          # Can we set a format for this ?
+          type: string
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        taxNetAmount:
+          # Can we set a format for this ?
+          type: string
+        taxRate:
+          # Can we set a format for this ?
+          type: string
+        taxAmount:
+          # Can we set a format for this ?
+          type: string
+        localNetAmount:
+          # Can we set a format for this ?
+          type: string
+    overpaymentsType:
+      type: object
+      properties:
+          currentInvoiceAmount:
+            # Can we set a format for this ?
+            type: string
+          overpaymentsAmount:
+            # Can we set a format for this ?
+            type: string
+          totalDue:
+            # Can we set a format for this ?
+            type: string
+          remainingOverpayment:
+            # Can we set a format for this ?
+            type: string
+    creditNoteNettingType:
+      type: object
+      properties:
+        currentInvoiceNumber:
+          # Can we set a format for this ?
+          type: string
+        currentInvoiceAmount:
+          # Can we set a format for this ?
+          type: string
+        linkedCreditNoteNumber:
+          # Can we set a format for this ?
+          type: string
+        linkedCreditNoteAmount:
+          # Can we set a format for this ?
+          type: string
+        currentInvoiceLessCreditNoteAmount:
+          # Can we set a format for this ?
+          type: string
+        recalcPaymentInfoMsg:
+          # Can we set a format for this ?
+          type: string
+    marketingMessagesType:
+      type: object
+      properties:
+        optOutMarketMsgId:
+          type: string
+        optInMarketMsgId:
+          type: string
+
+    brochureType:
+      type: object
+      properties:
+        brochureName:
+          type: string
+        brochureCode:
+          type: string
+
+    chargeSummaryType:
+      type: object
+      properties:
+        headerName:
+          # Can we set a format for this ?
+          type: string
+        chargeAmount:
+          # Can we set a format for this ?
+          type: string
+
+    summaryLevelChargesSubType:
+      type: object
+      properties:
+        worldpayAcquiredCards:
+          $ref: '#/components/schemas/summaryChargeFundingCurrencyListSummaryType'
+        otherAcquirerCards:
+          $ref: '#/components/schemas/summaryChargeFundingCurrencyListSummaryType'
+        chargebacks:
+          $ref: '#/components/schemas/summaryChargeFundingCurrencyListSummaryType'
+        premium:
+          $ref: '#/components/schemas/summaryChargeFundingCurrencyListSummaryType'
+        miscellaneous:
+          $ref: '#/components/schemas/summaryChargeFundingCurrencyListSummaryType'
+        otherFees:
+          $ref: '#/components/schemas/summaryChargeFundingCurrencyListSummaryType'
+        totalNetCharges:
+          $ref: '#/components/schemas/chargeSummaryType'
+        totalTaxAmount:
+          $ref: '#/components/schemas/chargeSummaryType'
+        billTotalChargesDue:
+          $ref: '#/components/schemas/chargeSummaryType'
+
+    merchantDetailsType:
+      type: object
+      properties:
+        taxdsRegNumber:
+          # Can we set a format for this ?
+          type: string
+        storeReference:
+          type: integer
+          format: int64
+        id:
+          # Can we set a format for this ?
+          type: string
+        name:
+          # Can we set a format for this ?
+          type: string
+        storeTown:
+          # Can we set a format for this ?
+          type: string
+        tradingName:
+          # Can we set a format for this ?
+          type: string
+        # Changed name from type to merType since type is a reserved name
+        merType:
+          # Can we set a format for this ?
+          type: string
+        contact:
+          type: object
+          properties:
+            communicationChannel:
+              $ref: '#/components/schemas/communicationChannelType'
+            emailContactList:
+              type: object
+              properties:
+                emailContact:
+                  type array:
+                  items:
+                    $ref: '#/components/schemas/emailType'
+            address:
+              $ref: '#/components/schemas/addressType'
+        bankAccount:
+          $ref: '#/components/schemas/merchantBankAccountType'
+        worldpayBankAccount:
+          $ref: '#/components/schemas/worldpayBankAccountType'
+
+    emailType:
+      type: object
+      prooperties:
+        emailType:
+          # Can we set a format for this ?
+          type: string
+        emailId:
+          # Can we set a format for this ?
+          type: string
+
+    communicationChannelType:
+      type: object
+      properties:
+        store:
+          type: boolean
+        post:
+          type: boolean
+        email:
+          type: boolean
+        portal:
+          type: boolean
+
+    merchantBankAccountType:
+      type: object
+      properties:
+        accountName:
+          # Can we set a format for this ?
+          type: string
+        number:
+          # Can we set a format for this ?
+          type: string
+        sortCode:
+          # Can we set a format for this ?
+          type: string
+        iban:
+          # Can we set a format for this ?
+          type: string
+        debitDate:
+          # Can we set a format for this ?
+          type: string
+        paymentInfoMsg:
+          # Can we set a format for this ?
+          type: string
+
+    worldpayBankAccountType:
+      type: object
+      properties:
+        accountName:
+          # Can we set a format for this ?
+          type: string
+        number:
+          # Can we set a format for this ?
+          type: string
+        sortCode:
+          # Can we set a format for this ?
+          type: string
+        iban:
+          # Can we set a format for this ?
+          type: string
+        debitDate:
+          # Can we set a format for this ?
+          type: string
+        swift:
+          # Can we set a format for this ?
+          type: string
+        paymentInfoMsg:
+          # Can we set a format for this ?
+          type: string
+
+    worldpayType:
+      type: object
+      properties:
+        # product is the Brand ID for the given business unit to be used for this merchant, with which it will identify the Logo, fonts and colours -->
+        brandId:
+          # Can we set a format for this ?
+          type: string
+        # legalNoteId is the Legal Branding used for this merchant legal counter party
+        legalNoteId:
+          # Can we set a format for this ?
+          type: string
+        taxRegNumber:
+          # Can we set a format for this ?
+          type: string
+        contact:
+          type: object
+          properties:
+            address:
+              $ref: '#/components/schemas/addressType'
+            phone:
+              type: object
+              properties:
+                queryContact:
+                  type: string
+
+    addressType:
+      type: object
+      properties:
+        name:
+          type: string
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        cityTown:
+          type: string
+        postcode:
+          # Can we set a format for this ?
+          type: string
+        country:
+          type: string
+
+    txnPartySummaryType:
+      type: object
+      properties:
+        headerName:
+          type: string
+        txnValue:
+          # Can we set a format for this ?
+          type: string
+        txnCount:
+          type: integer
+          format: int64
+        icFee:
+          # Can we set a format for this ?
+          type: string
+        schemeFee:
+          # Can we set a format for this ?
+          type: string
+        chargeAmount:
+          # Can we set a format for this ?
+          type: string
+        taxAmount:
+          # Can we set a format for this ?
+          type: string
+        billAmount:
+          # Can we set a format for this ?
+          type: string
+
+    billRequest:
+      type: object
+      properties:
+        invoice:
+          $ref: '#/components/schemas/invoiceType'
+        creditNote:
+          $ref: '#/components/schemas/creditNoteType'
+
+      example: '{
+           "invoice": {
+              "@filename": "12495267_PO3012558103_150307697",
+              "chargingCurrency": "GBP",
+              "taxAuthorityCode": "VAT",
+              "header": {
+                 "invoiceNumber": "150307697",
+                 "regenFlag": "N",
+                 "contactReasonTypeId": "Invoice",
+                 "documentTemplateTypeId": "INVPREMD",
+                 "businessUnit": "PO1300000004",
+                 "externalPartyId": "PO3012558103",
+                 "internalPartyId": "PO1100000001",
+                 "invoiceDate": "31 May 2021",
+                 "billCyclePeriod": "01 May 2021 to 31 May 2021",
+                 "invoiceTitleMsg": "Invoice",
+                 "premiumMsg": "PremiumMsg",
+                 "bankAccount": {
+                    "accountName": "W TON BOROUGH CNCL",
+                    "number": "XXXX1969",
+                    "sortCode": "XXX917",
+                    "debitDate": "13 July 2021",
+                    "paymentInfoMsg": "DIRECTDEBITPAYMENTMSG"
+                 },
+                 "taxRegNumber": "GB991280207",
+                 "paymentInfoMsg": "DIRECTDEBITPAYMENTMSG"
+              },
+              "details": {
+                 "billingParty": {
+                    "charges": {
+                       "worldpayAcquiredCards": {
+                          "fundingCurrencyList": null
+                       },
+                       "otherAcquirerCards": {
+                          "fundingCurrencyList": null
+                       },
+                       "miscellaneous": {
+                          "fundingCurrencyList": {
+                             "fundingCurrency": {
+                                "fundingCurrencyCode": "GBP",
+                                "headerName": "Miscellaneous Charges (GBP Settled)",
+                                "pricingCurrencyCode": "GBP",
+                                "chargesList": {
+                                   "charge": {
+                                      "headerName": "Terminal Rental",
+                                      "txnCount": "1",
+                                      "chargeRate": "19.95000",
+                                      "chargeAmount": "19.95",
+                                      "taxCode": "S"
+                                   }
+                                },
+                                "chargesSummary": {
+                                   "headerName": "Total",
+                                   "chargeAmount": "19.95"
+                                }
+                             }
+                          }
+                       }
+                    },
+                    "batchTotals": {
+                       "fundingCurrencyList": null
+                    }
+                 }
+              },
+              "chargeSummary": {
+                 "charges": {
+                    "worldpayAcquiredCards": {
+                       "fundingCurrencyList": {
+                          "fundingCurrency": {
+                             "fundingCurrencyCode": "GBP",
+                             "headerName": "Transaction Charges - Cards Acquired (GBP)",
+                             "chargeAmount": "0.00"
+                          }
+                       }
+                    },
+                    "otherAcquirerCards": {
+                       "fundingCurrencyList": {
+                          "fundingCurrency": {
+                             "fundingCurrencyCode": "GBP",
+                             "headerName": "Transaction Charges - Cards Processed for Other Acquirers (GBP)",
+                             "chargeAmount": "0.00"
+                          }
+                       }
+                    },
+                    "miscellaneous": {
+                       "fundingCurrencyList": {
+                          "fundingCurrency": {
+                             "fundingCurrencyCode": "GBP",
+                             "headerName": "Miscellaneous Charges (GBP)",
+                             "chargeAmount": "19.95"
+                          }
+                       }
+                    },
+                    "totalNetCharges": {
+                       "headerName": "Total Charges",
+                       "chargeAmount": "19.95"
+                    },
+                    "totalTaxAmount": {
+                       "headerName": "VAT",
+                       "chargeAmount": "3.99"
+                    },
+                    "billTotalChargesDue": {
+                       "headerName": "Total Due",
+                       "chargeAmount": "23.94"
+                    }
+                 },
+                 "taxAnalysis": {
+                    "totalTaxAmountBillCurrency": "3.99",
+                    "taxLines": {
+                       "taxLine": {
+                          "headerName": "S Standard",
+                          "taxNetAmount": "19.95",
+                          "taxRate": "20.00%",
+                          "taxAmount": "3.99",
+                          "localNetAmount": "19.95"
+                       }
+                    }
+                 }
+              }
+           }
+        }'
+
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          eda-header:
+            headerVersion:
+              type: string
+              title: headerVersion title
+              description: Version of the message header
+            eventId:
+              type: string
+              title: eventId title
+              description: RFC 4122 Compliant UUID of the event
+            name:
+              type: string
+              title: name title
+              description: Name of the event as per DDD definition
+            nameSchema:
+              type: string
+              title: nameSchema title
+              description: A reference to a schema that which can be used to deserialising the payload; http://localhost:8081/subjects/nameSchema-value/versions/1
+            nameSchemaType:
+              type: string
+              title: nameSchemaType title
+              description: nFormat of this event, JSON, XML, AVRO, PROTOBUF, FIXED
+            occuredAt:
+              type: string
+              title: occuredAt title
+              description: Specifies the date time of this event
+            generatedByContextName:
+              type: string
+              title: generatedByContextName title
+              description: generatedName of the bounded context that published the message
+            generatedByNodeName:
+              type: string
+              title: generatedByNodeName title
+              description: generaName of a node that a service lives on
+            generatedByServiceName:
+              type: string
+              title: generatedByServiceName title
+              description: generatedName of a service that generated this event
+            generatedByServiceId:
+              type: string
+              title: generatedByServiceId title
+              description: generatAn Id associated with a particular service
+            generatedByConsequenceOff:
+              type: string
+              title: generatedByConsequenceOff title
+              description: generatedBy Id of the antecedent event
+            generatedByPartOff:
+              type: string
+              title: generatedByPartOff title
+              description: generatedBy Id of the aggregation event
+            initiatorContextName:
+              type: string
+              title: initiatorContextName title
+              description: initiatName of the bounded context that initiated the message
+            initiatorNodeName:
+              type: string
+              title: initiatorNodeName title
+              description: initName of a node that a service lives on
+            initiatorServiceName:
+              type: string
+              title: initiatorServiceName title
+              description: initiatName of a service that generated this event
+            initiatorServiceId:
+              type: string
+              title: initiatorServiceId title
+              description: initiAn Id associated with a particular service
+            initiatorId:
+              type: string
+              title: initiatorId title
+              description: Id of the antecedent event
